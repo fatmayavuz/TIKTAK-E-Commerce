@@ -1,0 +1,117 @@
+﻿@model bitirme_database_new.Models.Ilanlar
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="mb-4">@Model.baslik</h2>
+    @using (Html.BeginForm("IlanDuzenle1", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.id)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.baslik, "Başlık", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.baslik, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Ana Kategori", new { @class = "form-label" })
+            <select id="anaKategori" name="ana_kategori" class="form-control" onchange="updateAltKategoriOptions()">
+                <option value="Emlak" @(Model.ana_kategori == "Emlak" ? "selected" : "")>Emlak</option>
+                <option value="Vasıta" @(Model.ana_kategori == "Vasıta" ? "selected" : "")>Vasıta</option>
+                <option value="Giyim" @(Model.ana_kategori == "Giyim" ? "selected" : "")>Giyim</option>
+                <option value="İş İlanları" @(Model.ana_kategori == "İş İlanları" ? "selected" : "")>İş İlanları</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Alt Kategori", new { @class = "form-label" })
+            <select id="altKategori" name="alt_kategori" class="form-control">
+                <!-- Alt kategori seçenekleri dinamik olarak JavaScript ile yüklenecek -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.aciklama, "Açıklama", new { @class = "form-label" })
+            @Html.TextAreaFor(m => m.aciklama, new { @class = "form-control", rows = 3 })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.fiyat, "Fiyat", new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control" })
+        </div>
+        <br /><br />
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    }
+</div>
+
+<script>
+    const altKategoriOptions = {
+        "Emlak": ["Satılık", "Kiralık", "Arsa", "Devren Satılık"],
+        "Vasıta": ["Araba", "Motor", "Bisiklet"],
+        "Giyim": ["Kadın", "Erkek", "Çocuk", "Aksesuar", "Ev Aletleri"],
+        "İş İlanları": ["Özel Ders", "Kamuda İş", "Evcil Hayvan Bakımı", "Özel Sektörde İş"]
+    };
+
+    function updateAltKategoriOptions() {
+        const anaKategori = document.getElementById('anaKategori').value;
+        const altKategori = document.getElementById('altKategori');
+
+        // Alt kategori seçeneklerini temizle
+        altKategori.innerHTML = '';
+
+        // Yeni alt kategori seçeneklerini ekle
+        if (altKategoriOptions[anaKategori]) {
+            altKategoriOptions[anaKategori].forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                opt.selected = option === '@Model.alt_kategori';
+                altKategori.appendChild(opt);
+            });
+        }
+    }
+
+    // Sayfa yüklendiğinde alt kategori seçeneklerini yükle
+    document.addEventListener('DOMContentLoaded', updateAltKategoriOptions);
+</script>
+
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #343a40;
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-weight: bold;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>

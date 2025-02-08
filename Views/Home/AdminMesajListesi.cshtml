@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "AdminMesajListesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<bitirme_database_new.Models.Mesajlar>
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Tüm Mesajlar</h1>
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Gönderen ID</th>
+                <th>Alıcı ID</th>
+                <th>İlan</th>
+                <th>Mesaj</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mesaj in Model)
+            {
+                <tr>
+                    <td>@mesaj.gonderen_id</td>
+                    <td>@mesaj.alici_id</td>
+                    <td>@mesaj.Ilanlar.baslik</td>
+                    <td>@mesaj.mesaj</td>
+                    <td>@mesaj.tarih</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

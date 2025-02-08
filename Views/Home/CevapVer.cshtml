@@ -1,0 +1,30 @@
+﻿
+
+@{
+    ViewBag.Title = "CevapVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model bitirme_database_new.Models.Mesajlar
+
+@using (Html.BeginForm("GonderCevap", "Home", FormMethod.Post))
+{
+    <input type="hidden" name="ilan_id" value="@Model.ilan_id" />
+    <input type="hidden" name="alici_id" value="@Model.gonderen_id" />
+    <input type="hidden" name="gonderen_id" value="@Model.alici_id" />
+    <!-- gonderen_id'yi alici_id olarak gönderiyoruz -->
+
+
+    <!-- Mesaj yazma alanı -->
+    <div class="form-group">
+        <textarea id="mesaj" name="mesaj" class="form-control" placeholder="Mesajınızı yazın" rows="6"></textarea>
+    </div>
+    <br />
+    <!-- Gönder butonu -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Gönder</button>
+    </div>
+}
+
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="32bbebcc4dad4a87a474a2434b9415db" Name="Diagram1">
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Adminler1" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Alısveris" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Arama_Loglari" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Emlak" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Favoriler" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Giyim_Taki" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Hizmetler_Egitim" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Ilan_Resimleri" Width="1.5" PointX="8.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Ilanlar" Width="1.5" PointX="6" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Is_Ilanları" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Kategoriler" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Kullanıcılar" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Kullanici_Iletisim" Width="1.5" PointX="3" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Mesajlar" Width="1.5" PointX="8.25" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Odemeler" Width="1.5" PointX="11.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Vasıta" Width="1.5" PointX="3" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Vasıta_Kategoriler" Width="1.5" PointX="5.25" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bitirme_ProjesiModel.Yorumlar" Width="1.5" PointX="11.25" PointY="24.5" IsExpanded="true" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Alısveris_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Arama_Loglari_Arama_Loglari" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Emlak_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Emlak_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Favoriler_Ilanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Favoriler_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Giyim_Taki_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Giyim_Taki_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Ilan_Resimleri_Ilanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Ilanlar_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Ilanlar_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Mesajlar_Ilanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Odemeler_Ilanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Yorumlar_Ilanlar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Vasıta_Kategoriler_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Kullanici_Iletisim_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Mesajlar_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Mesajlar_Kullanıcılar1" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Odemeler_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Vasıta_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Yorumlar_Kullanıcılar" ManuallyRouted="false" />
+        <AssociationConnector Association="Bitirme_ProjesiModel.FK_Vasıta_Kategoriler_Vasıta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

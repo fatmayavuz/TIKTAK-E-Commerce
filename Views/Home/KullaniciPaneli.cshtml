@@ -1,0 +1,311 @@
+﻿
+
+
+@model bitirme_database_new.Models.Ilanlar
+
+@{
+    ViewBag.Title = "Kullanıcı Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+h4 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table th {
+    background-color: #5D9C59; /* Yeşil tonları */
+    color: #fff;
+}
+
+.table td {
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ilan-kayit-container, .mesajlasma-container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none; /* Kartın kenarlıklarını kaldır */
+        border-radius: 8px; /* Daha modern bir görünüm için köşeleri yuvarla */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    }
+
+        .card:hover {
+            transform: translateY(-10px); /* Üzerine gelince yukarı doğru hareket ettir */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Gölgeyi büyüt */
+        }
+
+    .card-header {
+        font-size: 18px; /* Başlık boyutunu büyüt */
+        font-weight: bold; /* Başlığı kalın yap */
+        text-align: center; /* Başlığı ortala */
+        border-radius: 8px 8px 0 0; /* Başlık kenarlarını yuvarla */
+        padding: 10px 15px;
+    }
+
+    .card-body {
+        padding: 20px; /* Kart içeriği için geniş boşluk */
+    }
+
+        .card-body p {
+            color: #555; /* Metin rengini iyileştir */
+            font-size: 15px; /* Metin boyutunu artır */
+        }
+
+    .btn {
+        font-size: 14px; /* Buton metin boyutunu küçült */
+        font-weight: bold; /* Buton metin kalınlığı */
+        padding: 10px 20px; /* Buton iç boşlukları */
+        border-radius: 5px; /* Daha yumuşak buton köşeleri */
+    }
+
+    .btn-sepete-git {
+        background-color: #FFC300; /* Sarı */
+        border-color: #FFC300;
+        color: #fff;
+    }
+
+        .btn-sepete-git:hover {
+            background-color: #e6b800; /* Daha koyu sarı */
+            border-color: #e6b800;
+        }
+
+    .btn-ilanlari-yonet {
+        background-color: #7ED321; /* Yeşil */
+        border-color: #7ED321;
+        color: #fff;
+    }
+
+        .btn-ilanlari-yonet:hover {
+            background-color: #6DB21F; /* Daha koyu yeşil */
+            border-color: #6DB21F;
+        }
+
+    .btn-favorilere-git {
+        background-color: #50E3C2; /* Turkuaz */
+        border-color: #50E3C2;
+        color: #fff;
+    }
+
+        .btn-favorilere-git:hover {
+            background-color: #3eb79b; /* Daha koyu turkuaz */
+            border-color: #3eb79b;
+        }
+
+    .btn-mesajlari-yonet {
+        background-color: #f05454; /* Kırmızı */
+        border-color: #f05454;
+        color: #fff;
+    }
+
+        .btn-mesajlari-yonet:hover {
+            background-color: #d94343; /* Daha koyu kırmızı */
+            border-color: #d94343;
+        }
+
+
+</style>
+
+<div class="container">
+
+    @if (ViewBag.KullaniciAdi != null)
+    {
+
+
+        <div class="row">
+
+            <!-- Alışveriş Sepeti -->
+            <div class="col-md-3">
+                <br /><br />
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">Alışveriş Sepeti</div>
+                    <div class="card-body text-center">
+                        <p>Sepetinizdeki ürünleri inceleyin ve alışverişinizi tamamlayın.</p>
+                        <a href="@Url.Action("ShoppingCart", "Home")" class="btn btn-sm btn-sepete-git">
+                            <i class="fas fa-shopping-cart me-1"></i> Sepete Git
+                        </a>
+                    </div>
+                </div><br />
+
+                <div class="card">
+                    <div class="card-header bg-success text-white">İlan Yönetimi</div>
+                    <div class="card-body text-center">
+                        <p>Eklenen ilanları onayla, düzenle veya sil.</p>
+                        <a href="@Url.Action("KullaniciIlanListesi", "Home")" class="btn btn-sm btn-ilanlari-yonet">İlanları Yönet</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Favoriler -->
+            <div class="col-md-3">
+                <br /><br />
+                <div class="card">
+                    <div class="card-header bg-info text-white">Favoriler</div>
+                    <div class="card-body text-center">
+                        <p>Favori ürünlerinizi görüntüleyin ve yönetin.</p>
+                        <a href="@Url.Action("FavoriUrunler", "Home")" class="btn btn-sm btn-favorilere-git">Favorilere Git</a>
+                    </div>
+                </div><br />
+
+                <div class="card">
+                    <div class="card-header bg-danger text-white">Mesaj Yönetimi</div>
+                    <div class="card-body text-center">
+                        <p>İlanlarına gelen mesajları gör ve yanıtla.</p>
+                        <a href="@Url.Action("MesajListesi", "Home")" class="btn btn-sm btn-mesajlari-yonet text-white" style="background-color: #ff6f61;">Mesajları Yönet</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="ilan-kayit-container">
+                    <h4>İlan Kaydı Oluştur</h4>
+                    @using (Html.BeginForm("IlanKaydet", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.baslik, "Başlık")
+                                    @Html.TextBoxFor(m => m.baslik, new { @class = "form-control", placeholder = "İlan başlığı giriniz", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.baslik, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.fiyat, "Fiyat")
+                                    @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control", type = "number", step = "0.01", placeholder = "Fiyat giriniz", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.fiyat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.ana_kategori, "Ana Kategori")
+                                    @Html.DropDownListFor(m => m.ana_kategori, new SelectList(new[] { "Emlak", "Giyim", "Vasıta", "İş İlanları" }), "Kategori Seçin", new { @class = "form-control", required = "required", onchange = "updateAltKategori()" })
+                                    @Html.ValidationMessageFor(m => m.ana_kategori, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.alt_kategori, "Alt Kategori")
+                                    @Html.DropDownListFor(m => m.alt_kategori, new SelectList(new string[] { }), "Alt Kategori Seçiniz", new { @class = "form-control", id = "alt_kategori", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.alt_kategori, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.aciklama, "Açıklama")
+                                    @Html.TextAreaFor(m => m.aciklama, new { @class = "form-control", rows = 4, placeholder = "İlan açıklamasını giriniz" })
+                                    @Html.ValidationMessageFor(m => m.aciklama, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Fotoğraf Yükle</label>
+                                    <input type="file" id="uploadedPhoto" name="uploadedPhoto" class="form-control" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">İlan Kaydet</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+       
+    }
+</div>
+
+<script>
+    const kategoriMapping = {
+        "Emlak": ["Kiralık", "Satılık", "Arsa", "Devren Satılık"],
+        "Giyim": ["Kadın", "Erkek", "Çocuk", "Aksesuar", "Ev Aletleri"],
+        "Vasıta": ["Araba", "Motor", "Bisiklet", "Tarım Aracı"],
+        "İş İlanları": ["Özel Ders", "Kamuda İş", "Özelde İş"]
+    };
+
+    function updateAltKategori() {
+        const selectedCategory = document.getElementById('ana_kategori').value;
+        const altKategoriDropdown = document.getElementById('alt_kategori');
+
+        altKategoriDropdown.innerHTML = '<option value="">Alt Kategori Seçiniz</option>';
+
+        if (kategoriMapping[selectedCategory]) {
+            kategoriMapping[selectedCategory].forEach(function (kategori) {
+                const option = document.createElement("option");
+                option.value = kategori;
+                option.text = kategori;
+                altKategoriDropdown.appendChild(option);
+            });
+        }
+    }
+</script>

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "MesajListesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<bitirme_database_new.Models.Mesajlar>
+
+<div class="container mt-3">
+    <h3 class="text-center">Mesajlarım</h3>
+    <div class="list-group">
+        @foreach (var mesaj in Model)
+        {
+            <div class="list-group-item">
+                <p><strong>Ilan Başlık:</strong> @mesaj.Ilanlar.baslik</p>
+                <p><strong>Mesaj:</strong> @mesaj.mesaj</p>
+                <p><small><strong>Tarih:</strong> @mesaj.tarih</small></p>
+
+                <!-- Cevap Ver ve Sil Butonları -->
+                <div class="mt-2">
+                    <a href="@Url.Action("CevapVer", "Home", new { id = mesaj.id })" class="btn btn-primary btn-sm">Cevap Ver</a>
+                    <a href="@Url.Action("DeleteMesaj", "Home", new { id = mesaj.id })" class="btn btn-danger btn-sm" onclick="return confirm('Bu mesajı silmek istediğinize emin misiniz?');">Sil</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

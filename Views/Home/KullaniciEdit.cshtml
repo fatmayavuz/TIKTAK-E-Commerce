@@ -1,0 +1,91 @@
+﻿@model bitirme_database_new.Models.Kullanıcılar
+
+@{
+    ViewBag.Title = "Kullanıcı Düzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Kullanıcı Düzenle</h2>
+    @using (Html.BeginForm("KullaniciEdit", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.id) <!-- Hidden field for ID -->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ad, "Ad", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.ad, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.soyad, "Soyad", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.soyad, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.e_posta, "E-posta", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.e_posta, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sifre, "Şifre", new { @class = "form-label" })
+            @Html.PasswordFor(model => model.sifre, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.telefon, "Telefon", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.telefon, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.adres, "Adres", new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.adres, new { @class = "form-control" })
+        </div>
+
+        <br /><br />
+        <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+    }
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #343a40;
+        text-align: center;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #495057;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        font-weight: bold;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>

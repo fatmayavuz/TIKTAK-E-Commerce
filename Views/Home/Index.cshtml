@@ -1,0 +1,432 @@
+﻿
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category and Ads Filter</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Navbar için mor renk */
+        .navbar {
+            background-color: #FFC300;
+        }
+
+            .navbar a {
+                color: #FFC300 !important; /* Navbar bağlantıları için altın rengi */
+            }
+
+        .category-headings h5 {
+            cursor: pointer;
+            color: #6A0DAD;
+            margin-bottom: 15px;
+        }
+
+            .category-headings h5.main-category {
+                color: #FFC300;
+                font-weight: bold;
+            }
+
+        .sub-category ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+            .sub-category ul li {
+                cursor: pointer;
+                color: #6c757d;
+                margin-bottom: 5px;
+            }
+
+        .card-item {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 430px; /* Fixed height for all cards */
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; /* Prevents title from wrapping to the next line */
+        }
+
+        .card-text {
+            font-size: 1rem;
+            margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; /* Prevents description from wrapping to the next line */
+        }
+
+        .card-img-top {
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            height: 150px; /* Set a fixed height for the image */
+        } 
+        
+
+        .category-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .category-headings {
+            flex: 1;
+        }
+
+        .ads-container {
+            flex: 3;
+            margin-left: 20px;
+        }
+
+        /* Icon styling */
+        .action-icons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+            .action-icons button {
+                border-radius: 50%;
+                padding: 10px;
+                font-size: 18px;
+                width: 40px;
+                height: 40px;
+            }
+
+        .cart-icon {
+            background-color: #FFC300; /* Yellow background for shopping cart */
+            color: white;
+        }
+
+        .message-icon {
+            background-color: #6A0DAD; /* Purple background for message */
+            color: white;
+        }
+
+        /* Modal Arkaplanı */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.7) !important; /* Arka plan bulanık */
+        }
+
+        .modal-content {
+            border-radius: 8px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <!-- Sol taraf: Filtreleme kısmı -->
+            <div class="col-md-3 category-container">
+                <!-- Kategori Başlıkları ve Alt Başlıklar -->
+                <div class="category-headings">
+                    <h5 class="main-category" onclick="showAllAds()">Tüm İlanlar</h5>
+                    <h5 class="main-category" onclick="filterCategory('Emlak')">Emlak</h5>
+                    <div class="sub-category">
+                        <ul>
+                            <li onclick="filterSubCategory('Emlak', 'Satılık')">Satılık</li>
+                            <li onclick="filterSubCategory('Emlak', 'Kiralık')">Kiralık</li>
+                            <li onclick="filterSubCategory('Emlak', 'Arsa')">Arsa</li>
+                            <li onclick="filterSubCategory('Emlak', 'Devren Satılık')">Devren Satılık</li>
+                        </ul>
+                    </div>
+
+                    <h5 class="main-category" onclick="filterCategory('Vasıta')">Vasıta</h5>
+                    <div class="sub-category">
+                        <ul>
+                            <li onclick="filterSubCategory('Vasıta', 'Araba')">Araba</li>
+                            <li onclick="filterSubCategory('Vasıta', 'Motor')">Motor</li>
+                            <li onclick="filterSubCategory('Vasıta', 'Bisiklet')">Bisiklet</li>
+                        </ul>
+                    </div>
+
+                    <h5 class="main-category" onclick="filterCategory('Giyim')">Giyim</h5>
+                    <div class="sub-category">
+                        <ul>
+                            <li onclick="filterSubCategory('Giyim', 'Kadın')">Kadın</li>
+                            <li onclick="filterSubCategory('Giyim', 'Erkek')">Erkek</li>
+                            <li onclick="filterSubCategory('Giyim', 'Çocuk')">Çocuk</li>
+                            <li onclick="filterSubCategory('Giyim', 'Aksesuar')">Aksesuar</li>
+                            <li onclick="filterSubCategory('Giyim', 'Ev Aletleri')">Ev Aletleri</li>
+                        </ul>
+                    </div>
+
+                    <h5 class="main-category" onclick="filterCategory('İş İlanları')">İş İlanları</h5>
+                    <div class="sub-category">
+                        <ul>
+                            <li onclick="filterSubCategory('İş İlanları', 'Özel Ders')">Özel Ders</li>
+                            <li onclick="filterSubCategory('İş İlanları', 'Kamuda İş')">Kamuda İş</li>
+                            <li onclick="filterSubCategory('İş İlanları', 'Özel Sektörde İş')">Özel Sektörde İş</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sağ taraf: İlanlar -->
+            <div class="col-md-8 ads-container">
+                <div class="row" id="adsContainer">
+                    <!-- İlanlar Dinamik Olarak Burada Yüklenecek -->
+                    @foreach (var ilan in Model)
+                    {
+                        <div class="col-md-4 col-sm-6 col-12 card-item" data-category="@ilan.ana_kategori" data-subcategory="@ilan.alt_kategori">
+                            <div class="card mb-3">
+                                <!-- Favori Butonu -->
+                                <button class="btn btn-outline-danger favorite-btn" onclick="addToFavorites(@ilan.id)">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <img src="@ilan.resim_url" class="card-img-top" alt="@ilan.baslik">
+                                <div class="card-body">
+                                    <h5 class="card-title">@ilan.baslik</h5>
+                                    <p class="card-text">@ilan.aciklama</p>
+                                    <div class="action-icons">
+                                        @if (ilan.ana_kategori == "Giyim")
+                                        {
+                                            <!-- Sepete Ekle Butonu -->
+                                            <button class="cart-icon btn btn-secondary d-flex align-items-center justify-content-center" onclick="addToCart(@ilan.id)">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <!-- Mesaj İkonu -->
+                                            <button class="message-icon btn btn-secondary" onclick="sendMessage(@ilan.id)">
+                                                <i class="fas fa-comment"></i>
+                                            </button>
+                                        }
+                                        <a href="javascript:void(0);" class="btn btn-primary mt-2" onclick="openModal(@ilan.id, '@ilan.baslik', '@ilan.aciklama', '@ilan.fiyat')">Detay</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="ilanModal" tabindex="-1" aria-labelledby="ilanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ilanModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="ilanDescription"></p>
+                    <p><strong>Fiyat: </strong><span id="ilanPrice"></span></p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- Message Modal -->
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Mesaj Gönder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="messageTextArea" class="form-control" rows="3" placeholder="Mesajınızı buraya yazın..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitMessage()">Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function addToFavorites(ilanId) {
+        // Favori ekleme işlemi için AJAX isteği
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddToFavorites", "Home")',
+            data: { ilanId: ilanId },
+            success: function(response) {
+                if (response.success) {
+                    alert('İlan favorilere eklendi!');
+                } else {
+                    alert('Bir hata oluştu!');
+                }
+            },
+            error: function() {
+                alert('Bir hata oluştu!');
+            }
+        });
+    }
+
+  function openModal(ilanId, baslik, aciklama, fiyat) {
+    // Modal içeriğini dinamik olarak yükleme
+    $('#ilanModalLabel').text(baslik);
+    $('#ilanDescription').text(aciklama);
+    $('#ilanPrice').text(fiyat);
+
+    // Load existing comments dynamically if needed (AJAX call to fetch comments)
+    $.ajax({
+        type: 'GET',
+        url: '@Url.Action("GetComments", "Home")',
+        data: { ilanId: ilanId },
+        success: function(response) {
+            var commentsHtml = '';
+            response.comments.forEach(function(comment) {
+                commentsHtml += '<div class="comment">' + comment.text + '</div>';
+            });
+            $('#commentsSection').html(commentsHtml);
+        },
+        error: function() {
+            $('#commentsSection').html('<p>Henüz yorum yapılmadı.</p>');
+        }
+    });
+
+    // Modal'ı açma
+    $('#ilanModal').modal('show');
+}
+
+
+    // Load existing comments dynamically if needed (AJAX call to fetch comments)
+ $.ajax({
+     type: 'GET',
+     url: '@Url.Action("GetComments", "Home")',
+     data: { ilanId: ilanId },
+     success: function(response) {
+         var commentsHtml = '';
+         response.comments.forEach(function(comment) {
+             commentsHtml += '<div class="comment">' + comment.text + '</div>';
+         });
+         $('#commentsSection').html(commentsHtml);
+     },
+     error: function() {
+         $('#commentsSection').html('<p>Henüz yorum yapılmadı.</p>');
+     }
+ });
+
+    function showAllAds() {
+        const items = document.querySelectorAll('.card-item');
+        items.forEach(item => item.style.display = 'block');
+    }
+
+    function filterCategory(category) {
+        const items = document.querySelectorAll('.card-item');
+        items.forEach(item => {
+            if (item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function filterSubCategory(category, subCategory) {
+        const items = document.querySelectorAll('.card-item');
+        items.forEach(item => {
+            if (item.dataset.category === category && item.dataset.subcategory === subCategory) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        }
+
+
+        function addToCart(ilanId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart", "Home")',
+                data: { ilanId: ilanId },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Ürün sepete eklendi!");
+                    } else {
+                        alert("Ürün sepete eklenemedi. Lütfen tekrar deneyiniz.");
+                    }
+                }
+            });
+        }
+
+
+
+
+
+function sendMessage(ilanId) {
+    // Store the ilanId to use when submitting the message
+    $('#messageModal').data('ilanId', ilanId);
+    // Show the message modal
+    $('#messageModal').modal('show');
+}
+
+function submitMessage() {
+    var messageText = document.getElementById('messageTextArea').value;
+
+    // Check if the message is empty
+    if (messageText.trim() === '') {
+        alert('Lütfen bir mesaj yazın!');
+        return;
+    }
+
+
+    // Retrieve the ilanId from the modal
+    var ilanId = $('#messageModal').data('ilanId');
+
+
+    // Send message to the backend via AJAX
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("SaveMessage", "Home")',  // Adjust this URL to your action
+        data: {
+            ilanId: ilanId,
+            messageText: messageText
+        },
+        success: function(response) {
+            if (response.success) {
+                alert('Mesajınız başarıyla gönderildi!');
+                $('#messageModal').modal('hide'); // Close the modal
+            } else {
+                alert('Mesaj gönderilemedi, lütfen tekrar deneyin.');
+            }
+        },
+        error: function() {
+            alert('Bir hata oluştu!');
+        }
+    });
+}
+
+
+
+    </script>
+
+</body>
+</html>

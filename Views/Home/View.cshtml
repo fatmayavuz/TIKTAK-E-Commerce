@@ -1,0 +1,34 @@
+﻿@model IEnumerable<bitirme_database_new.Models.Mesajlar>
+
+@{
+    ViewBag.Title = "Mesaj Yönetimi";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-5">Mesaj Yönetimi</h1>
+
+    <!-- Message List -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Gönderen</th>
+                    <th>Alici</th>
+                    <th>Mesaj</th>
+                    <th>Tarih</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mesaj in Model)
+                {
+                    <tr>
+                        <td>@mesaj.gonderen_id</td> <!-- Display sender's username -->
+                        <td>@mesaj.alici_id</td> <!-- Display recipient's username -->
+                        <td>@mesaj.mesaj</td>                        <!-- Display message text -->
+                        <td>@mesaj.tarih</td> <!-- Display message date -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

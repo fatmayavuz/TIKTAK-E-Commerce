@@ -1,0 +1,84 @@
+﻿@model IEnumerable<bitirme_database_new.Models.Favoriler>
+
+@{
+    ViewBag.Title = "Favorilerim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Favori Ürünlerim</h2>
+
+<div class="row">
+    @foreach (var favori in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="@(!string.IsNullOrEmpty(favori.Ilanlar.resim_url) ? favori.Ilanlar.resim_url : "https://via.placeholder.com/150")"
+                     class="card-img-top"
+                     alt="@favori.Ilanlar.baslik">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">@favori.Ilanlar.baslik</h5>
+                    <p class="card-text text-truncate">@favori.Ilanlar.aciklama</p>
+                    <p><strong>Fiyat:</strong> @favori.Ilanlar.fiyat</p>
+                    <button class="btn btn-primary mt-auto mb-2" onclick="openModal('@favori.Ilanlar.baslik', '@favori.Ilanlar.aciklama', '@favori.Ilanlar.fiyat')">Detayları Gör</button>
+                    <a href="@Url.Action("FavoriSil", "Home", new { id = favori.id })"
+                       class="btn btn-danger"
+                       onclick="return confirm('Bu ürünü favorilerinizden silmek istediğinize emin misiniz?');">Sil</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription"></p>
+                <p><strong>Fiyat: </strong><span id="modalPrice"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function openModal(title, description, price) {
+        $('#modalLabel').text(title);
+        $('#modalDescription').text(description);
+        $('#modalPrice').text(price);
+        $('#detailModal').modal('show');
+    }
+</script>
+
+<style>
+    .card {
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-img-top {
+        height: 150px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-text {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+</style>

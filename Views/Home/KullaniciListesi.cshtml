@@ -1,0 +1,68 @@
+﻿@model IEnumerable<bitirme_database_new.Models.Kullanıcılar>
+
+@{
+    ViewBag.Title = "Kullanıcı Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Kullanıcı Listesi</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Kullanıcı Adı</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>E-Posta</th>
+                    <th>Telefon</th>
+                    <th>Adres</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kullanici in Model)
+                {
+                    <tr>
+                        <td>@kullanici.kullanici_adi</td>
+                        <td>@kullanici.ad</td>
+                        <td>@kullanici.soyad</td>
+                        <td>@kullanici.e_posta</td>
+                        <td>@kullanici.telefon</td>
+                        <td>@kullanici.adres</td>
+                        <td>
+                            <a href="@Url.Action("KullaniciEdit", "Home", new { id = kullanici.id })" class="btn btn-warning btn-sm">Düzenle</a>
+                            <a href="@Url.Action("KullanıcıSil", "Home", new { id = kullanici.id })"
+                               onclick="return confirm('Bu kullanıcıyı silmek istediğinize emin misiniz?');"
+                               class="btn btn-danger btn-sm">Sil</a>
+
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .table {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .btn {
+        border-radius: 5px;
+    }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+</style>

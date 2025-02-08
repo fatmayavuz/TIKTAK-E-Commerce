@@ -1,0 +1,1510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Bitirme_ProjesiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adminler1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="şifre" Type="nvarchar" MaxLength="100" />
+          <Property Name="e_posta" Type="nvarchar" MaxLength="100" />
+          <Property Name="ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="11" />
+          <Property Name="adres" Type="text" />
+        </EntityType>
+        <EntityType Name="Alısveris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="urun_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="marka" Type="nvarchar" MaxLength="100" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="text" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Arama_Loglari">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" />
+          <Property Name="arama_kelimesi" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emlak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="text" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="kullanici_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="ilan_id" Type="int" Nullable="false" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Giyim_Taki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="kullanici_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Hizmetler_Egitim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="hizmet_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="text" />
+        </EntityType>
+        <EntityType Name="Ilan_Resimleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ilan_id" Type="int" Nullable="false" />
+          <Property Name="resim_url" Type="nvarchar" MaxLength="100" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ilanlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baslik" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="aciklama" Type="text" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="kullanici_id" Type="int" />
+          <Property Name="ana_kategori" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="resim_url" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Is_Ilanları">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pozisyon" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sektör" Type="nvarchar" MaxLength="100" />
+          <Property Name="iş_tipi" Type="nvarchar" MaxLength="100" />
+          <Property Name="ücret" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ana_kategori" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="alt_kategori" Type="nvarchar" MaxLength="100" />
+          <Property Name="aciklama" Type="text" />
+        </EntityType>
+        <EntityType Name="Kullanıcılar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_adi" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="e_posta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="11" />
+          <Property Name="adres" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Kullanici_Iletisim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="adres" Type="text" />
+        </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gonderen_id" Type="int" Nullable="false" />
+          <Property Name="alici_id" Type="int" Nullable="false" />
+          <Property Name="ilan_id" Type="int" />
+          <Property Name="mesaj" Type="text" Nullable="false" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Odemeler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="ilan_id" Type="int" />
+          <Property Name="tutar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vasıta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="alt_kategori_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="marka" Type="nvarchar" MaxLength="100" />
+          <Property Name="model" Type="nvarchar" MaxLength="100" />
+          <Property Name="yil" Type="int" />
+          <Property Name="kilometre" Type="int" />
+          <Property Name="renk" Type="nvarchar" MaxLength="100" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="kullanici_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Vasıta_Kategoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vasıta_id" Type="int" />
+          <Property Name="kategori_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullanici_id" Type="int" Nullable="false" />
+          <Property Name="ilan_id" Type="int" Nullable="false" />
+          <Property Name="yorum" Type="text" Nullable="false" />
+          <Property Name="puan" Type="int" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Alısveris_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alısveris" Type="Self.Alısveris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alısveris">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arama_Loglari_Arama_Loglari">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Arama_Loglari" Type="Self.Arama_Loglari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Arama_Loglari">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emlak_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Emlak" Type="Self.Emlak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emlak">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emlak_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Emlak" Type="Self.Emlak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emlak">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Giyim_Taki_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Giyim_Taki" Type="Self.Giyim_Taki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Giyim_Taki">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Giyim_Taki_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Giyim_Taki" Type="Self.Giyim_Taki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Giyim_Taki">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilan_Resimleri_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilan_Resimleri" Type="Self.Ilan_Resimleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilan_Resimleri">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilanlar_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilanlar">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilanlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilanlar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Iletisim_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Kullanici_Iletisim" Type="Self.Kullanici_Iletisim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Kullanici_Iletisim">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="0..1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="gonderen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Kullanıcılar1">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="alici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="0..1" />
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kategoriler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vasıta_Kategoriler" Type="Self.Vasıta_Kategoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta_Kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kategoriler_Vasıta">
+          <End Role="Vasıta" Type="Self.Vasıta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vasıta_Kategoriler" Type="Self.Vasıta_Kategoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vasıta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta_Kategoriler">
+              <PropertyRef Name="vasıta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Vasıta" Type="Self.Vasıta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bitirme_ProjesiModelStoreContainer">
+          <EntitySet Name="Adminler1" EntityType="Self.Adminler1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alısveris" EntityType="Self.Alısveris" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arama_Loglari" EntityType="Self.Arama_Loglari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emlak" EntityType="Self.Emlak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Giyim_Taki" EntityType="Self.Giyim_Taki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hizmetler_Egitim" EntityType="Self.Hizmetler_Egitim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ilan_Resimleri" EntityType="Self.Ilan_Resimleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ilanlar" EntityType="Self.Ilanlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Is_Ilanları" EntityType="Self.Is_Ilanları" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanıcılar" EntityType="Self.Kullanıcılar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici_Iletisim" EntityType="Self.Kullanici_Iletisim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odemeler" EntityType="Self.Odemeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vasıta" EntityType="Self.Vasıta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vasıta_Kategoriler" EntityType="Self.Vasıta_Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alısveris_Kullanıcılar" Association="Self.FK_Alısveris_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Alısveris" EntitySet="Alısveris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arama_Loglari_Arama_Loglari" Association="Self.FK_Arama_Loglari_Arama_Loglari">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Arama_Loglari" EntitySet="Arama_Loglari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emlak_Kategoriler" Association="Self.FK_Emlak_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Emlak" EntitySet="Emlak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emlak_Kullanıcılar" Association="Self.FK_Emlak_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Emlak" EntitySet="Emlak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Ilanlar" Association="Self.FK_Favoriler_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Kullanıcılar" Association="Self.FK_Favoriler_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Giyim_Taki_Kategoriler" Association="Self.FK_Giyim_Taki_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Giyim_Taki" EntitySet="Giyim_Taki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Giyim_Taki_Kullanıcılar" Association="Self.FK_Giyim_Taki_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Giyim_Taki" EntitySet="Giyim_Taki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilan_Resimleri_Ilanlar" Association="Self.FK_Ilan_Resimleri_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Ilan_Resimleri" EntitySet="Ilan_Resimleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilanlar_Kategoriler" Association="Self.FK_Ilanlar_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilanlar_Kullanıcılar" Association="Self.FK_Ilanlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Iletisim_Kullanıcılar" Association="Self.FK_Kullanici_Iletisim_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Kullanici_Iletisim" EntitySet="Kullanici_Iletisim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Ilanlar" Association="Self.FK_Mesajlar_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Kullanıcılar" Association="Self.FK_Mesajlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Kullanıcılar1" Association="Self.FK_Mesajlar_Kullanıcılar1">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Ilanlar" Association="Self.FK_Odemeler_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Kullanıcılar" Association="Self.FK_Odemeler_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kategoriler_Kategoriler" Association="Self.FK_Vasıta_Kategoriler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Vasıta_Kategoriler" EntitySet="Vasıta_Kategoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kategoriler_Vasıta" Association="Self.FK_Vasıta_Kategoriler_Vasıta">
+            <End Role="Vasıta" EntitySet="Vasıta" />
+            <End Role="Vasıta_Kategoriler" EntitySet="Vasıta_Kategoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kullanıcılar" Association="Self.FK_Vasıta_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Vasıta" EntitySet="Vasıta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Ilanlar" Association="Self.FK_Yorumlar_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Kullanıcılar" Association="Self.FK_Yorumlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bitirme_ProjesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adminler1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="şifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="e_posta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Alısveris">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="urun_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="marka" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Alısveris_Kullanıcılar" FromRole="Alısveris" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Arama_Loglari">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <Property Name="arama_kelimesi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Arama_Loglari_Arama_Loglari" FromRole="Arama_Loglari" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Emlak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Emlak_Kategoriler" FromRole="Emlak" ToRole="Kategoriler" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Emlak_Kullanıcılar" FromRole="Emlak" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="ilan_id" Type="Int32" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Favoriler_Ilanlar" FromRole="Favoriler" ToRole="Ilanlar" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Favoriler_Kullanıcılar" FromRole="Favoriler" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Giyim_Taki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Giyim_Taki_Kategoriler" FromRole="Giyim_Taki" ToRole="Kategoriler" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Giyim_Taki_Kullanıcılar" FromRole="Giyim_Taki" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Hizmetler_Egitim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="hizmet_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Ilan_Resimleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ilan_id" Type="Int32" Nullable="false" />
+          <Property Name="resim_url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Ilan_Resimleri_Ilanlar" FromRole="Ilan_Resimleri" ToRole="Ilanlar" />
+        </EntityType>
+        <EntityType Name="Ilanlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baslik" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <Property Name="ana_kategori" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="resim_url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Favoriler" Relationship="Self.FK_Favoriler_Ilanlar" FromRole="Ilanlar" ToRole="Favoriler" />
+          <NavigationProperty Name="Ilan_Resimleri" Relationship="Self.FK_Ilan_Resimleri_Ilanlar" FromRole="Ilanlar" ToRole="Ilan_Resimleri" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Ilanlar_Kategoriler" FromRole="Ilanlar" ToRole="Kategoriler" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Ilanlar_Kullanıcılar" FromRole="Ilanlar" ToRole="Kullanıcılar" />
+          <NavigationProperty Name="Mesajlar" Relationship="Self.FK_Mesajlar_Ilanlar" FromRole="Ilanlar" ToRole="Mesajlar" />
+          <NavigationProperty Name="Odemeler" Relationship="Self.FK_Odemeler_Ilanlar" FromRole="Ilanlar" ToRole="Odemeler" />
+          <NavigationProperty Name="Yorumlar" Relationship="Self.FK_Yorumlar_Ilanlar" FromRole="Ilanlar" ToRole="Yorumlar" />
+        </EntityType>
+        <EntityType Name="Is_Ilanları">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pozisyon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sektör" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="iş_tipi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ücret" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ana_kategori" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alt_kategori" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emlak" Relationship="Self.FK_Emlak_Kategoriler" FromRole="Kategoriler" ToRole="Emlak" />
+          <NavigationProperty Name="Giyim_Taki" Relationship="Self.FK_Giyim_Taki_Kategoriler" FromRole="Kategoriler" ToRole="Giyim_Taki" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Ilanlar_Kategoriler" FromRole="Kategoriler" ToRole="Ilanlar" />
+          <NavigationProperty Name="Vasıta_Kategoriler" Relationship="Self.FK_Vasıta_Kategoriler_Kategoriler" FromRole="Kategoriler" ToRole="Vasıta_Kategoriler" />
+        </EntityType>
+        <EntityType Name="Kullanıcılar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="e_posta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Alısveris" Relationship="Self.FK_Alısveris_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Alısveris" />
+          <NavigationProperty Name="Arama_Loglari" Relationship="Self.FK_Arama_Loglari_Arama_Loglari" FromRole="Kullanıcılar" ToRole="Arama_Loglari" />
+          <NavigationProperty Name="Emlak" Relationship="Self.FK_Emlak_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Emlak" />
+          <NavigationProperty Name="Favoriler" Relationship="Self.FK_Favoriler_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Favoriler" />
+          <NavigationProperty Name="Giyim_Taki" Relationship="Self.FK_Giyim_Taki_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Giyim_Taki" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Ilanlar_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Ilanlar" />
+          <NavigationProperty Name="Kullanici_Iletisim" Relationship="Self.FK_Kullanici_Iletisim_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Kullanici_Iletisim" />
+          <NavigationProperty Name="Mesajlar" Relationship="Self.FK_Mesajlar_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Mesajlar" />
+          <NavigationProperty Name="Mesajlar1" Relationship="Self.FK_Mesajlar_Kullanıcılar1" FromRole="Kullanıcılar" ToRole="Mesajlar" />
+          <NavigationProperty Name="Odemeler" Relationship="Self.FK_Odemeler_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Odemeler" />
+          <NavigationProperty Name="Vasıta" Relationship="Self.FK_Vasıta_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Vasıta" />
+          <NavigationProperty Name="Yorumlar" Relationship="Self.FK_Yorumlar_Kullanıcılar" FromRole="Kullanıcılar" ToRole="Yorumlar" />
+        </EntityType>
+        <EntityType Name="Kullanici_Iletisim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <Property Name="telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Kullanici_Iletisim_Kullanıcılar" FromRole="Kullanici_Iletisim" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gonderen_id" Type="Int32" Nullable="false" />
+          <Property Name="alici_id" Type="Int32" Nullable="false" />
+          <Property Name="ilan_id" Type="Int32" />
+          <Property Name="mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Mesajlar_Ilanlar" FromRole="Mesajlar" ToRole="Ilanlar" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Mesajlar_Kullanıcılar" FromRole="Mesajlar" ToRole="Kullanıcılar" />
+          <NavigationProperty Name="Kullanıcılar1" Relationship="Self.FK_Mesajlar_Kullanıcılar1" FromRole="Mesajlar" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="Odemeler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="ilan_id" Type="Int32" />
+          <Property Name="tutar" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Odemeler_Ilanlar" FromRole="Odemeler" ToRole="Ilanlar" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Odemeler_Kullanıcılar" FromRole="Odemeler" ToRole="Kullanıcılar" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vasıta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="alt_kategori_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="marka" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="yil" Type="Int32" />
+          <Property Name="kilometre" Type="Int32" />
+          <Property Name="renk" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="kullanici_id" Type="Int32" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Vasıta_Kullanıcılar" FromRole="Vasıta" ToRole="Kullanıcılar" />
+          <NavigationProperty Name="Vasıta_Kategoriler" Relationship="Self.FK_Vasıta_Kategoriler_Vasıta" FromRole="Vasıta" ToRole="Vasıta_Kategoriler" />
+        </EntityType>
+        <EntityType Name="Vasıta_Kategoriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vasıta_id" Type="Int32" />
+          <Property Name="kategori_id" Type="Int32" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Vasıta_Kategoriler_Kategoriler" FromRole="Vasıta_Kategoriler" ToRole="Kategoriler" />
+          <NavigationProperty Name="Vasıta" Relationship="Self.FK_Vasıta_Kategoriler_Vasıta" FromRole="Vasıta_Kategoriler" ToRole="Vasıta" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullanici_id" Type="Int32" Nullable="false" />
+          <Property Name="ilan_id" Type="Int32" Nullable="false" />
+          <Property Name="yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="puan" Type="Int32" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilanlar" Relationship="Self.FK_Yorumlar_Ilanlar" FromRole="Yorumlar" ToRole="Ilanlar" />
+          <NavigationProperty Name="Kullanıcılar" Relationship="Self.FK_Yorumlar_Kullanıcılar" FromRole="Yorumlar" ToRole="Kullanıcılar" />
+        </EntityType>
+        <Association Name="FK_Alısveris_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alısveris" Type="Self.Alısveris" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alısveris">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arama_Loglari_Arama_Loglari">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Arama_Loglari" Type="Self.Arama_Loglari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Arama_Loglari">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emlak_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Emlak" Type="Self.Emlak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emlak">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emlak_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Emlak" Type="Self.Emlak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emlak">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favoriler_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Giyim_Taki_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Giyim_Taki" Type="Self.Giyim_Taki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Giyim_Taki">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Giyim_Taki_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Giyim_Taki" Type="Self.Giyim_Taki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Giyim_Taki">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilan_Resimleri_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilan_Resimleri" Type="Self.Ilan_Resimleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilan_Resimleri">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilanlar_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilanlar">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilanlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ilanlar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="0..1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="0..1" />
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Ilanlar">
+          <End Role="Ilanlar" Type="Self.Ilanlar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ilanlar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="ilan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kategoriler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vasıta_Kategoriler" Type="Self.Vasıta_Kategoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta_Kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_Iletisim_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Kullanici_Iletisim" Type="Self.Kullanici_Iletisim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Kullanici_Iletisim">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="gonderen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesajlar_Kullanıcılar1">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesajlar">
+              <PropertyRef Name="alici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odemeler_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Odemeler" Type="Self.Odemeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odemeler">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="0..1" />
+          <End Role="Vasıta" Type="Self.Vasıta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Kullanıcılar">
+          <End Role="Kullanıcılar" Type="Self.Kullanıcılar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanıcılar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="kullanici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vasıta_Kategoriler_Vasıta">
+          <End Role="Vasıta" Type="Self.Vasıta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vasıta_Kategoriler" Type="Self.Vasıta_Kategoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vasıta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Vasıta_Kategoriler">
+              <PropertyRef Name="vasıta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bitirme_ProjesiEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adminler1" EntityType="Self.Adminler1" />
+          <EntitySet Name="Alısveris" EntityType="Self.Alısveris" />
+          <EntitySet Name="Arama_Loglari" EntityType="Self.Arama_Loglari" />
+          <EntitySet Name="Emlak" EntityType="Self.Emlak" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" />
+          <EntitySet Name="Giyim_Taki" EntityType="Self.Giyim_Taki" />
+          <EntitySet Name="Hizmetler_Egitim" EntityType="Self.Hizmetler_Egitim" />
+          <EntitySet Name="Ilan_Resimleri" EntityType="Self.Ilan_Resimleri" />
+          <EntitySet Name="Ilanlar" EntityType="Self.Ilanlar" />
+          <EntitySet Name="Is_Ilanları" EntityType="Self.Is_Ilanları" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" />
+          <EntitySet Name="Kullanıcılar" EntityType="Self.Kullanıcılar" />
+          <EntitySet Name="Kullanici_Iletisim" EntityType="Self.Kullanici_Iletisim" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" />
+          <EntitySet Name="Odemeler" EntityType="Self.Odemeler" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Vasıta" EntityType="Self.Vasıta" />
+          <EntitySet Name="Vasıta_Kategoriler" EntityType="Self.Vasıta_Kategoriler" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+          <AssociationSet Name="FK_Alısveris_Kullanıcılar" Association="Self.FK_Alısveris_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Alısveris" EntitySet="Alısveris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arama_Loglari_Arama_Loglari" Association="Self.FK_Arama_Loglari_Arama_Loglari">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Arama_Loglari" EntitySet="Arama_Loglari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emlak_Kategoriler" Association="Self.FK_Emlak_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Emlak" EntitySet="Emlak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emlak_Kullanıcılar" Association="Self.FK_Emlak_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Emlak" EntitySet="Emlak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Ilanlar" Association="Self.FK_Favoriler_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favoriler_Kullanıcılar" Association="Self.FK_Favoriler_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Giyim_Taki_Kategoriler" Association="Self.FK_Giyim_Taki_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Giyim_Taki" EntitySet="Giyim_Taki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Giyim_Taki_Kullanıcılar" Association="Self.FK_Giyim_Taki_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Giyim_Taki" EntitySet="Giyim_Taki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilan_Resimleri_Ilanlar" Association="Self.FK_Ilan_Resimleri_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Ilan_Resimleri" EntitySet="Ilan_Resimleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilanlar_Kategoriler" Association="Self.FK_Ilanlar_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilanlar_Kullanıcılar" Association="Self.FK_Ilanlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Ilanlar" Association="Self.FK_Mesajlar_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Ilanlar" Association="Self.FK_Odemeler_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Ilanlar" Association="Self.FK_Yorumlar_Ilanlar">
+            <End Role="Ilanlar" EntitySet="Ilanlar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kategoriler_Kategoriler" Association="Self.FK_Vasıta_Kategoriler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Vasıta_Kategoriler" EntitySet="Vasıta_Kategoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_Iletisim_Kullanıcılar" Association="Self.FK_Kullanici_Iletisim_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Kullanici_Iletisim" EntitySet="Kullanici_Iletisim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Kullanıcılar" Association="Self.FK_Mesajlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesajlar_Kullanıcılar1" Association="Self.FK_Mesajlar_Kullanıcılar1">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Mesajlar" EntitySet="Mesajlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odemeler_Kullanıcılar" Association="Self.FK_Odemeler_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Odemeler" EntitySet="Odemeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kullanıcılar" Association="Self.FK_Vasıta_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Vasıta" EntitySet="Vasıta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Kullanıcılar" Association="Self.FK_Yorumlar_Kullanıcılar">
+            <End Role="Kullanıcılar" EntitySet="Kullanıcılar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vasıta_Kategoriler_Vasıta" Association="Self.FK_Vasıta_Kategoriler_Vasıta">
+            <End Role="Vasıta" EntitySet="Vasıta" />
+            <End Role="Vasıta_Kategoriler" EntitySet="Vasıta_Kategoriler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bitirme_ProjesiModelStoreContainer" CdmEntityContainer="Bitirme_ProjesiEntities4">
+          <EntitySetMapping Name="Adminler1">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Adminler1">
+              <MappingFragment StoreEntitySet="Adminler1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="şifre" ColumnName="şifre" />
+                <ScalarProperty Name="e_posta" ColumnName="e_posta" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alısveris">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Alısveris">
+              <MappingFragment StoreEntitySet="Alısveris">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+                <ScalarProperty Name="alt_kategori_adi" ColumnName="alt_kategori_adi" />
+                <ScalarProperty Name="urun_adi" ColumnName="urun_adi" />
+                <ScalarProperty Name="marka" ColumnName="marka" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arama_Loglari">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Arama_Loglari">
+              <MappingFragment StoreEntitySet="Arama_Loglari">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="arama_kelimesi" ColumnName="arama_kelimesi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emlak">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Emlak">
+              <MappingFragment StoreEntitySet="Emlak">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+                <ScalarProperty Name="alt_kategori_adi" ColumnName="alt_kategori_adi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favoriler">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Favoriler">
+              <MappingFragment StoreEntitySet="Favoriler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="ilan_id" ColumnName="ilan_id" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Giyim_Taki">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Giyim_Taki">
+              <MappingFragment StoreEntitySet="Giyim_Taki">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+                <ScalarProperty Name="alt_kategori_adi" ColumnName="alt_kategori_adi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hizmetler_Egitim">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Hizmetler_Egitim">
+              <MappingFragment StoreEntitySet="Hizmetler_Egitim">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+                <ScalarProperty Name="alt_kategori_adi" ColumnName="alt_kategori_adi" />
+                <ScalarProperty Name="hizmet_adi" ColumnName="hizmet_adi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ilan_Resimleri">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Ilan_Resimleri">
+              <MappingFragment StoreEntitySet="Ilan_Resimleri">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ilan_id" ColumnName="ilan_id" />
+                <ScalarProperty Name="resim_url" ColumnName="resim_url" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ilanlar">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Ilanlar">
+              <MappingFragment StoreEntitySet="Ilanlar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="baslik" ColumnName="baslik" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="ana_kategori" ColumnName="ana_kategori" />
+                <ScalarProperty Name="alt_kategori" ColumnName="alt_kategori" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="resim_url" ColumnName="resim_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Is_Ilanları">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Is_Ilanları">
+              <MappingFragment StoreEntitySet="Is_Ilanları">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pozisyon" ColumnName="pozisyon" />
+                <ScalarProperty Name="sektör" ColumnName="sektör" />
+                <ScalarProperty Name="iş_tipi" ColumnName="iş_tipi" />
+                <ScalarProperty Name="ücret" ColumnName="ücret" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoriler">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Kategoriler">
+              <MappingFragment StoreEntitySet="Kategoriler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ana_kategori" ColumnName="ana_kategori" />
+                <ScalarProperty Name="alt_kategori" ColumnName="alt_kategori" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanıcılar">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Kullanıcılar">
+              <MappingFragment StoreEntitySet="Kullanıcılar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="e_posta" ColumnName="e_posta" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici_Iletisim">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Kullanici_Iletisim">
+              <MappingFragment StoreEntitySet="Kullanici_Iletisim">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesajlar">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Mesajlar">
+              <MappingFragment StoreEntitySet="Mesajlar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gonderen_id" ColumnName="gonderen_id" />
+                <ScalarProperty Name="alici_id" ColumnName="alici_id" />
+                <ScalarProperty Name="ilan_id" ColumnName="ilan_id" />
+                <ScalarProperty Name="mesaj" ColumnName="mesaj" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odemeler">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Odemeler">
+              <MappingFragment StoreEntitySet="Odemeler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="ilan_id" ColumnName="ilan_id" />
+                <ScalarProperty Name="tutar" ColumnName="tutar" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vasıta">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Vasıta">
+              <MappingFragment StoreEntitySet="Vasıta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+                <ScalarProperty Name="alt_kategori_adi" ColumnName="alt_kategori_adi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="marka" ColumnName="marka" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="yil" ColumnName="yil" />
+                <ScalarProperty Name="kilometre" ColumnName="kilometre" />
+                <ScalarProperty Name="renk" ColumnName="renk" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vasıta_Kategoriler">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Vasıta_Kategoriler">
+              <MappingFragment StoreEntitySet="Vasıta_Kategoriler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="vasıta_id" ColumnName="vasıta_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorumlar">
+            <EntityTypeMapping TypeName="Bitirme_ProjesiModel.Yorumlar">
+              <MappingFragment StoreEntitySet="Yorumlar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kullanici_id" ColumnName="kullanici_id" />
+                <ScalarProperty Name="ilan_id" ColumnName="ilan_id" />
+                <ScalarProperty Name="yorum" ColumnName="yorum" />
+                <ScalarProperty Name="puan" ColumnName="puan" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

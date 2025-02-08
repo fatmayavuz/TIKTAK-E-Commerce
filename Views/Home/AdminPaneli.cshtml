@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Admin Kontrol Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Admin Kontrol Paneli</h1>
+        <p class="text-muted">Sistemi yönetin, kullanıcılar ve ilanlar üzerinde tam kontrol sağlayın.</p>
+    </div>
+
+    <!-- Management Sections -->
+    <div class="row">
+        <!-- Kullanıcı Yönetimi -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <i class="fas fa-users fa-2x"></i>
+                    <h5 class="mt-2">Kullanıcı Yönetimi</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p>Kullanıcıları listele, detaylarını görüntüle ve rollerini yönet.</p>
+                    <a href="@Url.Action("KullaniciListesi", "Home")" class="btn btn-primary btn-sm">
+                        Kullanıcıları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- İlan Yönetimi -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <i class="fas fa-ad fa-2x"></i>
+                    <h5 class="mt-2">İlan Yönetimi</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p>Eklenen ilanları onayla, düzenle veya sil.</p>
+                    <a href="@Url.Action("IlanListesi", "Home")" class="btn btn-success btn-sm">
+                        İlanları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mesaj Yönetimi -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark text-center">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <h5 class="mt-2">Mesaj Yönetimi</h5>
+                </div>
+                <div class="card-body text-center">
+                    <p>Kullanıcılar arasındaki mesajlaşmaları görüntüle ve kontrol et.</p>
+                    <a href="@Url.Action("AdminMesajListesi", "Home")" class="btn btn-warning btn-sm">
+                        Mesajları Yönet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f9f9f9;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-header {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .btn {
+        font-weight: bold;
+        padding: 0.6rem 1.2rem;
+        border-radius: 20px;
+    }
+
+    .text-center h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .text-center p {
+        font-size: 1rem;
+        color: #666;
+    }
+</style>
+
+<!-- Font Awesome Script -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
